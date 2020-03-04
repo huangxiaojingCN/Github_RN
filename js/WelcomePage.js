@@ -5,9 +5,22 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import NavigatorUtils from './utils/NavigatorUtils';
 const myIcon = <Icon name="rocket" size={30} color="#900" />;
 
 class WelcomePage extends Component {
+
+    componentDidMount() {
+        this.timer = setTimeout(() => {
+            NavigatorUtils.resetHomePage(this.props);
+        }, 2000);
+    }
+
+    componentWillUnmount() {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+    }
 
     render() {
         return (
