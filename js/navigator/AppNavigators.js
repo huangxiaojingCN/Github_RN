@@ -1,33 +1,29 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from '../pages/HomePage';
 import WelcomePage from '../WelcomePage';
 
-const Stack = createStackNavigator();
-
-console.log(Stack.Screen);
+const AppStack = createStackNavigator();
+const HomeStack = createStackNavigator();
 
 function Home() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen
+        <HomeStack.Navigator>
+            <HomeStack.Screen
                 name="Home"
-                options={{
-                    header: () => {
-                        return null;
-                    }
-                }}
+                options={{ headerShown: false }}
                 component={HomePage}/>
-        </Stack.Navigator>
+        </HomeStack.Navigator>
     );
 }
 
 function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
+            <AppStack.Navigator mode="modal">
+                <AppStack.Screen
                     name="Welcome"
                     options={{
                         header: () => {
@@ -35,16 +31,12 @@ function App() {
                         }
                     }}
                     component={WelcomePage}/>
-                <Stack.Screen
+                <AppStack.Screen
                     name="Home"
-                    options={{
-                        header: () => {
-                            return null;
-                        }
-                    }}
+                    options={{ headerShown: false }}
                     component={Home}
                 />
-            </Stack.Navigator>
+            </AppStack.Navigator>
         </NavigationContainer>
     );
 }
